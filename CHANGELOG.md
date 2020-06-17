@@ -1,19 +1,14 @@
 # Changelog
 
-Include information about your changes as you release 
+## 0.1.0; TBA
 
-## Version number; Date
-
-Description of release goals.
+Initial release of EZ Excel
 
 ### Features
 
-...
-
-### Bug fixes
-
-...
+- Ability to provide a class to instantiate a workbook
+- Ability to pass instances of class to workbook to be serialized
 
 ### Documentation improvements
 
-...
+- Wrote all existing documentation :)
