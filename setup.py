@@ -1,15 +1,19 @@
-"""
-Description:
-    Contains all the configuration for the package on pip
-"""
+"""Contains all the configuration for the package on pip"""
 import setuptools
 
-def get_content(*filename):
-    """ Gets the content of a file and returns it as a string
-    Args:
-        filename(str): Name of file to pull content from
-    Returns:
-        str: Content from file
+def get_content(*filename:str) -> str:
+    """ Gets the content of a file or files and returns
+    it/them as a string
+    Parameters
+    ----------
+    filename : (str)
+        Name of file or set of files to pull content from 
+        (comma delimited)
+    
+    Returns
+    -------
+    str:
+        Content from the file or files
     """
     content = ""
     for file in filename:
@@ -19,7 +23,7 @@ def get_content(*filename):
 
 setuptools.setup(
     name = "ezexcel",
-    version = "0.0.1", # I recommend every 2nd decimal release for big releases and 3rd for bug fixes.
+    version = "0.1.0",
     author = "Kieran Wood",
     author_email = "kieran@canadiancoding.ca",
     description = "A simple class based xlsx serialization system",
@@ -28,19 +32,18 @@ setuptools.setup(
     url = "https://github.com/Descent098/ezexcel",
     include_package_data = True,
     py_modules = ["ezexcel"],
-    
-
     install_requires = [
-    "XlsxWriter", # Used for writing excel files
-      ],
+    "openpyxl", # Used for writing excel files
+    "colored",  # Used to colour output for emphasis
+        ],
     extras_require = {
-        "dev" : ["nox",    # Used to run automated processes
+        "dev" : ["nox",   # Used to run automated processes
                 "pytest", # Used to run the test code in the tests directory
                 ],
-
     },
     classifiers = [
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
+        "Development Status :: 4 - Beta"
     ],
 )

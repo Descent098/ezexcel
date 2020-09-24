@@ -105,3 +105,6 @@ venv.bak/
 
 # Nox files
 .nox/*
+
+# Leftover Excel Files
+.xlsx

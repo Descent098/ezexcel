@@ -37,10 +37,10 @@ def release(session):
     session.install('twine')
     session.run("twine", "upload", "dist/*")
 
-@nox.session(python=["3.5", "3.6", "3.7", "3.8"])
+@nox.session(python=["3.6", "3.7", "3.8"])
 def test(session):
     """Runs tests defined in tests folder against all installed versions
-       of python from 3.5-3.8"""
+        of python from 3.6-3.8"""
     session.install('.')
     session.install('pytest')
     session.run('pytest')
@@ -48,5 +48,6 @@ def test(session):
 @nox.session
 def docs(session):
     # Serve documentation to verify it's how you want
-    session.install("mkdocs")
-    session.run("mkdocs", "serve")
+    session.install(".") # install ezexcel
+    session.install("pdoc3")
+    session.run("pdoc3", "ezexcel", "--http", "localhost:8080")
