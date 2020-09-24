@@ -1,3 +1,5 @@
+![execel logo](https://github.com/Descent098/sdu/blob/master/.github/logo.png)
+
 # EZ Excel
 
 *A simple class based xlsx serialization system*
