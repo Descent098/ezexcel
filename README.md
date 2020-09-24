@@ -1,4 +1,4 @@
-![execel logo](https://github.com/Descent098/ezexcel/blob/master/.github/logo.png)
+![execel logo](https://raw.githubusercontent.com/Descent098/ezexcel/master/.github/logo.png)
 
 # EZ Excel
 
