@@ -165,7 +165,7 @@ class Spreadsheet():
         # The value that will be converted using chr() for column identifiers i.e. A1 B1 etc.
         column_identifier = 65  # Initialize to ord() value of 'A'
 
-        for index, value in enumerate(data):
+        for value in data:
             if column_identifier == 91:  # Roll over to Ax column identifiers from x column identifiers
                 label = f"AA{row}"
             elif column_identifier > 91:  # If beyond Z in column identifiers
