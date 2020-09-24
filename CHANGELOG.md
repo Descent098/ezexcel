@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1; September 25th
+
+Fixed logo loading on PyPi
+
+### Bug fixes
+
+- Fixed loading issue with logo on PyPi
+
 ## 0.1.0; September 25th
 
 Initial release of EZ Excel

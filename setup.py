@@ -23,7 +23,7 @@ def get_content(*filename:str) -> str:
 
 setuptools.setup(
     name = "ezexcel",
-    version = "0.1.0",
+    version = "0.1.1",
     author = "Kieran Wood",
     author_email = "kieran@canadiancoding.ca",
     description = "A simple class based xlsx serialization system",
