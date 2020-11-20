@@ -107,4 +107,5 @@ venv.bak/
 .nox/*
 
 # Leftover Excel Files
-.xlsx
+*.xlsx
+*.csv

@@ -1,8 +1,8 @@
-![execel logo](https://raw.githubusercontent.com/Descent098/ezexcel/master/.github/logo.png)
+![execel logo](https://raw.githubusercontent.com/Descent098/ezspreadsheet/master/.github/logo.png)
 
-# EZ Excel
+# EZ Spreadsheet
 
-*A simple class based xlsx serialization system*
+*A simple API to store/load python objects to/from spreadsheets*
 
 ## Table of contents
 - [Goals](#goals)
@@ -13,18 +13,18 @@
 ## Goals
 This project has a few goals:
 1. Make OO projects easier to serialize to xlsx
-2. Make use of xlsx serialization and deserialization (coming soon) easier
-3. Write the simplest to use api for xlsx serialization
+2. Make use of Spreadsheet serialization and deserialization (currently xlsx and csv supported)
+3. Write the simplest to use api for object serialization
 
 ## Installation
 
 ### From PyPi
 
-1. Run ```pip install ezexcel``` or ```sudo pip3 install ezexcel```
+1. Run ```pip install ezspreadsheet``` or ```sudo pip3 install ezspreadsheet```
 
 ### From source
 
-1. Clone this repo: (https://github.com/Descent098/ez-excel)
+1. Clone this repo: (https://github.com/Descent098/ezspreadsheet)
 2. Run ```pip install .``` or ```sudo pip3 install .```in the root directory
 
 
@@ -32,7 +32,7 @@ This project has a few goals:
 
 ### Store some animal instances in a spreadsheet called 'animals.xlsx'
 ```python
-from ezexcel import Spreadsheet
+from ezspreadsheet import Spreadsheet
 
 class Animal():
     def __init__(self, name:str, conservation_status:str):
@@ -49,7 +49,7 @@ with Spreadsheet('animals.xlsx', Animal) as output_sheet:
 
 ### Store a list of instances into a spreadsheet called 'users.xlsx'
 ```python
-from ezexcel import Spreadsheet
+from ezspreadsheet import Spreadsheet
 
 import random
 import string
@@ -73,8 +73,8 @@ with Spreadsheet('users.xlsx', User) as output_sheet:
 
 ## Additional Documentation
 
-Additional documentation can be found at https://kieranwood.ca/ezexcel
+Additional documentation can be found at https://kieranwood.ca/ezspreadsheet
 
-For details on how contributing to the project, please see [CONTRIBUTING.md](https://github.com/Descent098/ezexcel/blob/master/CONTRIBUTING.md), for details on upcoming changes see [our roadmap](https://github.com/Descent098/ezexcel/projects).
+For details on how contributing to the project, please see [CONTRIBUTING.md](https://github.com/Descent098/ezspreadsheet/blob/master/CONTRIBUTING.md), for details on upcoming changes see [our roadmap](https://github.com/Descent098/ezspreadsheet/projects).
 
-For most recent changes see [CHANGELOG.md](https://github.com/Descent098/ezexcel/blob/master/CHANGELOG.md).
+For most recent changes see [CHANGELOG.md](https://github.com/Descent098/ezspreadsheet/blob/master/CHANGELOG.md).

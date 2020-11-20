@@ -1,6 +1,6 @@
 # Development & Contribution guide
 
-Below are all the details you need to get started helping with the ezexcel project.
+Below are all the details you need to get started helping with the ezspreadsheet project.
 
 
 ## Table of contents
@@ -17,9 +17,9 @@ Below are all the details you need to get started helping with the ezexcel proje
 
 There is a template setup for bug reports, feature requests and questions on github, simply go:
 
-- [Here for bug reports](https://github.com/Descent098/ezexcel/issues/new?labels=bug&template=bug_report.md&title=%5BBUG%5D)
-- [Here for feature requests](https://github.com/Descent098/ezexcel/issues/new?labels=enhancement&template=feature_request.md&title=%5BFeature%5D)
-- [Here for questions](https://github.com/Descent098/ezexcel/issues/new?labels=documentation&template=question.md&title=%5Bquestion%5D)
+- [Here for bug reports](https://github.com/Descent098/ezspreadsheet/issues/new?labels=bug&template=bug_report.md&title=%5BBUG%5D)
+- [Here for feature requests](https://github.com/Descent098/ezspreadsheet/issues/new?labels=enhancement&template=feature_request.md&title=%5BFeature%5D)
+- [Here for questions](https://github.com/Descent098/ezspreadsheet/issues/new?labels=documentation&template=question.md&title=%5Bquestion%5D)
 
 ## Submitting Pull requests
 
@@ -34,13 +34,13 @@ On top of that here are the required standards:
 
 ## Roadmap
 
-For current roadmap, and development planning details see [our roadmap](https://github.com/Descent098/ezexcel/projects). This is how releases are planned and will give you an overview of what is being worked on for the current/future releases.
+For current roadmap, and development planning details see [our roadmap](https://github.com/Descent098/ezspreadsheet/projects). This is how releases are planned and will give you an overview of what is being worked on for the current/future releases.
 
 ## Setting up your development environment
 
 ### Prerequisites
 
-You will need the following to work on ezexcel:
+You will need the following to work on ezspreadsheet:
 
 - Python 3.6+
   - Be aware some tests will fail on version 3.6 because of lack of dataclasses, this is fine
@@ -71,7 +71,7 @@ Just go through and run ```pip install <name>``` or ```sudo pip3 install <name>`
 
 ### Files in root directory
 
-**ezexcel.py**: Contains all the functionality for ezexcel
+**ezspreadsheet.py**: Contains all the functionality for ezspreadsheet
 
 **setup.py**: Contains all the configuration for installing the package via pip.
 
@@ -81,7 +81,7 @@ Just go through and run ```pip install <name>``` or ```sudo pip3 install <name>`
 
 **CONTRIBUTING.md**: This file, contains details about development processes
 
-**.deepsource.toml**: [Deepsource](https://deepsource.io/gh/Descent098/ezexcel/) is used for code quality and security validation
+**.deepsource.toml**: [Deepsource](https://deepsource.io/gh/Descent098/ezspreadsheet/) is used for code quality and security validation
 
 **noxfile.py**: Used to configure various automated processes using [nox](https://nox.readthedocs.io/en/stable/), these include;
 
