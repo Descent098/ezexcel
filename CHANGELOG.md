@@ -1,13 +1,13 @@
 # Changelog
 
-## 0.2.0; tbd
+## 0.2.0; November 24th 2020
 
 - Added deserialization methods for xlsx files
 - Added serialization and deserialization methods for CSV files
-- Changed from ezexcel to ezspreadsheet
+- Changed name from ezexcel to ezspreadsheet
 - Split Xlxs processing to internal class and converted Spreadsheet class to dispatching class
 
-## 0.1.1; September 25th
+## 0.1.1; September 25th 2020
 
 Fixed logo loading on PyPi
 
