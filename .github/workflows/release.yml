@@ -4,8 +4,7 @@ on: [workflow_dispatch] # Manually run
 
 jobs:
   build:
-        runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
