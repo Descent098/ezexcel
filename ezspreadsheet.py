@@ -316,6 +316,7 @@ class _XLSX_Spreadsheet(Spreadsheet):
         self.workbook = None
         self.worksheet = None
         self.class_identifier = class_identifier
+        self.class_attributes = None
 
         if class_identifier:
             # Get all attributes of class defined in __init__
@@ -445,6 +446,8 @@ class _XLSX_Spreadsheet(Spreadsheet):
         current_row = 1  # The current row that the iteration is at
 
         # Add heading with the list of class attributes to A1
+        if not self.class_attributes:
+            raise ValueError("No class constructor provided, cannot store instances")
         self._add_row_to_spreadsheet(self.class_attributes, current_row, Font(bold=True, size=14))
         current_row += 1  # Increment row to start with row right after heading
         logging.debug(f"Instances are {instances}")
@@ -565,6 +568,7 @@ class _CSV_Spreadsheet(Spreadsheet):
         self.read = False
         self.written = False
         self.class_identifier = class_identifier
+        self.class_attributes = None
 
         if class_identifier:
             # Get all attributes of class defined in __init__
@@ -617,13 +621,15 @@ class _CSV_Spreadsheet(Spreadsheet):
         Raises
         ------
         ValueError
-            If an instance is not the correct type
+            If an instance is not the correct type, or no class constructor is provided
         """
 
         if not self.writer:
             self.writer = csv.writer(self.spreadsheet_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         # Write header
+        if not self.class_attributes:
+            raise ValueError("No class constructor provided, cannot store instances")
         self.writer.writerow(self.class_attributes)
 
         all_instance_values = [] # A list that will contain just the values of all instances
@@ -669,7 +675,43 @@ class _CSV_Spreadsheet(Spreadsheet):
 
     def _load_values(self):
         for row in self.reader:
-            yield row
+            values = list(row)
+            for index, value in enumerate(values):
+                # Deserialize iterables like lists, tuples and dicts
+                if type(value) == str:
+                    if value.startswith("["): # Deserialize lists that were not stored with self.store(readable=True)
+                        value = value[1:-2].replace("\'", "").replace('\"', "").split(',')
+                        values[index] = [v.strip() for v in value]
+
+                    elif value.startswith("("): # Deserialize tuples that were not stored with self.store(readable=True)
+                        value = value[1:-2].replace("\'", "").replace('\"', "").split(',')
+                        values[index] = tuple(v.strip() for v in value)
+
+                    elif value.startswith("{"): # Deserialize dicts that were not stored with self.store(readable=True)
+                        key_value_pairs = value[1:-2].replace("\'", "").replace('\"', "").split(',')
+                        result = {}
+                        for pair in key_value_pairs:
+                            key, value = pair.split(":")
+                            key = key.strip()
+                            if type(value) == str:
+                                result[key] = value.strip()
+                            else:
+                                result[key] = value
+                        values[index] = result
+
+                    elif value.isdigit():
+                        values[index] = int(value)
+
+                    elif value.isdecimal():
+                        values[index] = float(value)
+
+                    elif value.startswith("-"): # possible negative integer
+                        if value[1::].isdigit():
+                            values[index] = int(value[1::]) * -1
+                        if value[1::].isdecimal():
+                            values[index] = float(value[1::]) * -1
+
+            yield values
 
 
     def load(self, name:str) -> tuple:
@@ -722,11 +764,31 @@ class _CSV_Spreadsheet(Spreadsheet):
         else:
             logging.debug("No class identifier specified, generating namedtuple")
             # Get attributes from first row
-            constructor = namedtuple(name, next(values))
+            constructor = namedtuple(name, header)
 
             for instance_values in values:
-                instances.append(constructor._make(instance_values))
+                if len(instance_values) == len(self.class_attributes):
+                    instances.append(constructor._make(instance_values))
 
         logging.debug(f"Returning: {constructor}\n\n{instances}")
         self.read = True
         return constructor, instances
+
+
+if __name__ == "__main__":
+    class Animal():
+        def __init__(self, name:str, conservation_status:str):
+            self.name = name
+            self.conservation_status = conservation_status
+    
+    leopard_gecko = Animal('Leopard Gecko', 'Least Concern')
+
+    philippine_eagle = Animal('Philippine Eagle', 'Threatened')
+
+    with Spreadsheet('animals.xlsx', Animal) as output_sheet:
+        output_sheet.store(leopard_gecko, philippine_eagle)
+
+    with Spreadsheet('animals.csv') as loaded_sheet:
+        Animal, instances = loaded_sheet.load('Animal')
+
+    

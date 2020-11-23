@@ -50,4 +50,4 @@ def docs(session):
     # Serve documentation to verify it's how you want
     session.install(".") # install ezexcel
     session.install("pdoc3")
-    session.run("pdoc3", "ezexcel", "--http", "localhost:8080")
+    session.run("pdoc3", "ezspreadsheet", "--http", "localhost:8080")
