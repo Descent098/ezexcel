@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2; November 24th 2020
+
+- Updated links to include docs and source code urls
+
 ## 0.2.1; November 24th 2020
 
 - Updated description to match name change
