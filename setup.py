@@ -22,16 +22,16 @@ def get_content(*filename:str) -> str:
     return content
 
 setuptools.setup(
-    name = "ezexcel",
-    version = "0.1.1",
+    name = "ezspreadsheet",
+    version = "0.2.0",
     author = "Kieran Wood",
     author_email = "kieran@canadiancoding.ca",
     description = "A simple class based xlsx serialization system",
     long_description = get_content("README.md", "CHANGELOG.md"),
     long_description_content_type = "text/markdown",
-    url = "https://github.com/Descent098/ezexcel",
+    url = "https://github.com/Descent098/ezspreadsheet",
     include_package_data = True,
-    py_modules = ["ezexcel"],
+    py_modules = ["ezspreadsheet"],
     install_requires = [
     "openpyxl", # Used for writing excel files
     "colored",  # Used to colour output for emphasis
