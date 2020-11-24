@@ -29,7 +29,14 @@ setuptools.setup(
     description = "A simple API to store/load python objects to/from spreadsheets",
     long_description = get_content("README.md", "CHANGELOG.md"),
     long_description_content_type = "text/markdown",
-    url = "https://github.com/Descent098/ezspreadsheet",
+
+    project_urls = {
+    "API Docs"  :      "https://kieranwood.ca/ezspreadsheet",
+    "Source" :         "https://github.com/Descent098/ezspreadsheet",
+    "Bug Report":      "https://github.com/Descent098/ezspreadsheet/issues/new?assignees=Descent098&labels=bug&template=bug_report.md&title=%5BBUG%5D",
+    "Feature Request": "https://github.com/Descent098/ezspreadsheet/issues/new?assignees=Descent098&labels=enhancement&template=feature_request.md&title=%5BFeature%5D",
+    "Roadmap":         "https://github.com/Descent098/ezspreadsheet/projects"
+    },
     include_package_data = True,
     py_modules = ["ezspreadsheet"],
     install_requires = [
