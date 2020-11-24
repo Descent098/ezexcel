@@ -72,15 +72,13 @@ with Spreadsheet('animals.xlsx') as output_sheet: # Returned values will be a na
     returned_class, instances = output_sheet.load("Animal")
 
 for instance in instances:
-    print(instance) # prints '''Animal(name='Leopard Gecko', conservation_status='Least Concern')
-                                Animal(name='Philippine Eagle', conservation_status='Threatened')'''
+    print(instance) \"\"\"prints Animal(name='Leopard Gecko', conservation_status='Least Concern')\nAnimal(name='Philippine Eagle', conservation_status='Threatened')\"\"\"
 
 with Spreadsheet('animals.xlsx', Animal) as output_sheet: # Returned values will be an Animal class
     returned_class, instances = output_sheet.load("Animal")
 
 for instance in instances:
-    print(vars(instance)) # prints:  '''{'name': 'Leopard Gecko', 'conservation_status': 'Least Concern'}
-                                        {'name': 'Philippine Eagle', 'conservation_status': 'Threatened'}'''
+    print(vars(instance)) \"\"\"prints: {'name': 'Leopard Gecko', 'conservation_status': 'Least Concern'}\n{'name': 'Philippine Eagle', 'conservation_status': 'Threatened'}\"\"\"
 ```
 """
 import csv                                   # Used to read and write to CSV files
@@ -217,11 +215,12 @@ class Spreadsheet():
         -----
 
         - if self.class_identifier is specified on Spreadsheet instantiation then that class is used instead of instantiating a new one
+        - if self.class_identifier is not specified a subclass of namedtuple is instantiated and passed back
 
         Returns
         -------
         tuple
-            First return value is the constructor used to create instances (class if class_identifier is specified, else namedtuple), and second all the found instances
+            First return value is the constructor used to create instances (class if class_identifier is specified, else custom derived class), and second all the found instances
 
         Raises
         ------
@@ -764,7 +763,12 @@ class _CSV_Spreadsheet(Spreadsheet):
         else:
             logging.debug("No class identifier specified, generating namedtuple")
             # Get attributes from first row
-            constructor = namedtuple(name, header)
+            base_named_tuple = namedtuple(name, header)
+            class constructor(base_named_tuple):
+                __dict__ = property(base_named_tuple._asdict)
+                __name__ = property(base_named_tuple.__name__)
+
+            constructor.__name__ = name
 
             for instance_values in values:
                 if len(instance_values) == len(self.class_attributes):
@@ -775,7 +779,7 @@ class _CSV_Spreadsheet(Spreadsheet):
         return constructor, instances
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # local test code to play around with
     class Animal():
         def __init__(self, name:str, conservation_status:str):
             self.name = name
@@ -785,10 +789,9 @@ if __name__ == "__main__":
 
     philippine_eagle = Animal('Philippine Eagle', 'Threatened')
 
-    with Spreadsheet('animals.xlsx', Animal) as output_sheet:
+    with Spreadsheet('animals.csv', Animal) as output_sheet:
         output_sheet.store(leopard_gecko, philippine_eagle)
 
     with Spreadsheet('animals.csv') as loaded_sheet:
-        Animal, instances = loaded_sheet.load('Animal')
-
+        animals, instances = loaded_sheet.load('animals')
     

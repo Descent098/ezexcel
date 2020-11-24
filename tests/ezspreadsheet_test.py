@@ -3,7 +3,6 @@ from collections import namedtuple
 import os                           # Used to validate file existence, and remove test files
 import random                       # Used to generate random values for test classes
 import string                       # Used to filter random values for test classes
-from unittest import mock           # Used to fake results for tests with inputs
 from dataclasses import dataclass   # Used to save time instantiating test classes
 
 # Internal Dependencies
