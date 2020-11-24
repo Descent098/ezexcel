@@ -23,10 +23,10 @@ def get_content(*filename:str) -> str:
 
 setuptools.setup(
     name = "ezspreadsheet",
-    version = "0.2.0",
+    version = "0.2.1",
     author = "Kieran Wood",
     author_email = "kieran@canadiancoding.ca",
-    description = "A simple class based xlsx serialization system",
+    description = "A simple API to store/load python objects to/from spreadsheets",
     long_description = get_content("README.md", "CHANGELOG.md"),
     long_description_content_type = "text/markdown",
     url = "https://github.com/Descent098/ezspreadsheet",

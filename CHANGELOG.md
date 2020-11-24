@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1; November 24th 2020
+
+- Updated description to match name change
+
 ## 0.2.0; November 24th 2020
 
 - Added deserialization methods for xlsx files
